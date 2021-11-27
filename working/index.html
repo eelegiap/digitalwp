@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
-    <script src='regularswarm.js'></script>
+    <script src='working.js'></script>
     <style>
         body{
             font-family: Consolas, monaco, monospace;
@@ -13,11 +13,10 @@
             background: white;
         }
         circle {
-            fill: #ec008c;
-            opacity: 0.6;
+            /* opacity: 0.6; */
         }
         circle:hover {
-            opacity: 1;
+            /* opacity: 1; */
             stroke: navy
         }
         .axis path, .axis line {
@@ -62,6 +61,9 @@
         svg {
             overflow-x: scroll;
         }
+        .legend {
+            float: right
+        }
     </style>
 </head>
 <body>
@@ -70,12 +72,22 @@
         <!-- <p class="caps">Number of points: <span id="slider-amount">34</span></p>
         <input type="range" id="point-amount" value="34"> -->
     <!-- </header> -->
+    <div style='height: 40px'>
+        <span > 
+            <span style='color: #ef476f'>Andrei</span>
+            <span style='color: #1b9aaa'>Pierre</span>
+            <span style='color: #ffc43d'>Natasha</span>
+            <span style='color: #06d6a0'>Nikolai</span>
+            <span style='color: #b185db'>Sonya</span>
+            <span style='color: #6f523b'>Marya</span>
+            
+        </span>
+    </div>
+    <div style='height: 400px'><span id="js-info"></span></div>
 
-    <div style='height: 300px'><span id="js-info"></span></div>
-
-    <svg width="1200" height="400">
-        <g class="vis" transform="translate(15, -100)"></g>
-        <g class="axis" transform="translate(15, 190)"></g>
+    <svg width="1400" height="600">
+        <g class="vis" transform="translate(55, -80)"></g>
+        <g class="axis" transform="translate(55, 400)"></g>
     </svg>
 
 
@@ -92,7 +104,7 @@
     //     })
     // }
 
-    d3.csv("allhappy.csv", function (error, data) {
+    d3.csv("fridayhappy2.csv", function (error, data) {
         render(data)
     });
     // render swarm
