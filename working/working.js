@@ -16,12 +16,12 @@ function render(nodes) {
         .range([0, 1300])
 
     var charHeight = {
-        "Андрей Болконский": .2 * height,
-        "Пьер Безухов": .3 * height,
-        "Наташа": .4 * height,
+        "Андрей Болконский": .05 * height,
+        "Пьер Безухов": .2 * height,
+        "Наташа": .35 * height,
         'Николай Ростов': .5 * height,
-        'Соня': .6 * height,
-        'Марья': .7 * height
+        'Соня': .65 * height,
+        'Марья': .8 * height
     }
 
     let simulation = d3.forceSimulation(nodes)
@@ -29,7 +29,7 @@ function render(nodes) {
         .force('y', d3.forceY().y(function (d) { return charHeight[d.character] })
             // return height/2})
             .strength(1))
-        .force('collision', d3.forceCollide(7))//.radius(d => d.radius + 1))
+        .force('collision', d3.forceCollide(8))//.radius(d => d.radius + 1))
 
     simulation.stop()
 
@@ -58,7 +58,18 @@ function render(nodes) {
     u.enter()
         .append('circle')
         // .attr('r', d => d.radius + 1))
-        .attr('r', 6)
+        .attr('r', function(d) { return 6
+            // var emotions = d.emotionwords.split(';')
+            // var eRad = 3
+            // if (emotions.includes('счастье')) {
+            //     eRad = 4
+            // } if (emotions.includes('радость')) {
+            //     eRad = 6
+            // } if (emotions.includes('восторг')) {
+            //     eRad = 8
+            // }
+            // return eRad
+        })
         .classed('offclick', true)
         .style('fill', d => color(d.character))
         .attr('opacity', d => getOpacity(d))
@@ -94,17 +105,38 @@ function render(nodes) {
 
     // append volume markers
     var volMarkers = [[1, 'Volume 1'],[66, 'Volume 2'],[164, 'Volume 3'],[260, 'Volume 4'],[334, 'Epilogue'],[362, 'END']]
+    var partMarkers = [
+        [1, 'Part 1'],
+        [26, 'Part 2'],
+        [47, 'Part 3'],
+        [66, 'Part 1'],
+        [82, 'Part 2'],
+        [103, 'Part 3'],
+        [129, 'Part 4'],
+        [142, 'Part 5'],
+        [164, 'Part 1'],
+        [187, 'Part 2'],
+        [226, 'Part 3'],
+        [260, 'Part 1'],
+        [276, 'Part 2'],
+        [295, 'Part 3'],
+        [314, 'Part 4'],
+        [334, 'Part 1'],
+        [350, 'Part 2']
+    ]
+    
     volMarkers.forEach(function(p) {
         var page = p[0]; var volName = p[1];
 
         vis
             .append("line")
             .attr("x1", xScale(page))  //<<== change your code here
-            .attr("y1", .1 * height)
+            .attr("y1", 0 * height)
             .attr("x2", xScale(page))  //<<== and here
-            .attr("y2", .9 * height)
+            .attr("y2", .85 * height)
             .style("stroke-width", 2)
             .style("stroke", "red")
+            .style('opacity',.5)
             .style("fill", "none")
         vis
             .append('text')
@@ -112,6 +144,29 @@ function render(nodes) {
             .attr('x', xScale(page))
             .attr('y', .95 * height)
             .text(volName)
+    })
+
+
+    partMarkers.forEach(function(p) {
+        var page = p[0]; var name = p[1];
+
+        vis
+            .append("line")
+            .attr("x1", xScale(page))  //<<== change your code here
+            .attr("y1", 0 * height)
+            .attr("x2", xScale(page))  //<<== and here
+            .attr("y2", .85 * height)
+            .style("stroke-width", 1)
+            .style("stroke", "gray")
+            .style('opacity',.5)
+            .style("fill", "none")
+        vis
+            .append('text')
+            .attr('text-anchor', 'middle')
+            .attr('class','partMarker')
+            .attr('x', xScale(page))
+            .attr('y', .9 * height)
+            .text(name)
     })
 
     // render an axis

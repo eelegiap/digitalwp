@@ -14,19 +14,22 @@ function render(nodes) {
 
     const xScale = d3.scaleLinear()
         .domain([1, 362])
-        .range([0, 1200])
+        .range([0, 4000])
 
-    var eHeight = {
-        "счастье": .2 * height,
-        "радость": .5 * height,
-        'восторг': .7 * height,
-    }
+    // var charHeight = {
+    //     "Андрей Болконский": .2 * height,
+    //     "Пьер Безухов": .3 * height,
+    //     "Наташа": .4 * height,
+    //     'Николай Ростов': .5 * height,
+    //     'Соня': .6 * height,
+    //     'Марья': .7 * height
+    // }
 
     let simulation = d3.forceSimulation(nodes)
-        .force('x', d3.forceX().x(d => xScale(d.value)+6).strength(1))
+        .force('x', d3.forceX().x(d => xScale(d.value)).strength(1))
         .force('y', d3.forceY().y(function (d) { 
-            return eHeight[d.emotionwords] })
-            // return height/2})
+            // return charHeight[d.character] })
+            return height/2})
             .strength(1))
         .force('collision', d3.forceCollide(7))//.radius(d => d.radius + 1))
 
@@ -68,7 +71,7 @@ function render(nodes) {
     u.enter()
         .append('circle')
         // .attr('r', d => d.radius + 1))
-        .attr('r', 4)
+        .attr('r', 6)
         .classed('offclick', true)
         .style('fill', d => getColor(d))
         // .attr('opacity', d => getOpacity(d))
@@ -103,26 +106,6 @@ function render(nodes) {
 
     // append volume markers
     var volMarkers = [[1, 'Volume 1'],[66, 'Volume 2'],[164, 'Volume 3'],[260, 'Volume 4'],[334, 'Epilogue'], [362, 'END']]
-    var partMarkers = [
-        [1, 'Part 1'],
-        [26, 'Part 2'],
-        [47, 'Part 3'],
-        [66, 'Part 1'],
-        [82, 'Part 2'],
-        [103, 'Part 3'],
-        [129, 'Part 4'],
-        [142, 'Part 5'],
-        [164, 'Part 1'],
-        [187, 'Part 2'],
-        [226, 'Part 3'],
-        [260, 'Part 1'],
-        [276, 'Part 2'],
-        [295, 'Part 3'],
-        [314, 'Part 4'],
-        [334, 'Part 1'],
-        [350, 'Part 2']
-    ]
-
     volMarkers.forEach(function(p) {
         var page = p[0]; var volName = p[1];
 
@@ -131,41 +114,19 @@ function render(nodes) {
             .attr("x1", xScale(page))  //<<== change your code here
             .attr("y1", 0 * height)
             .attr("x2", xScale(page))  //<<== and here
-            .attr("y2", .8 * height)
+            .attr("y2", 1 * height)
             .style("stroke-width", 2)
             .style("stroke", "red")
-            .style('opacity',.5)
             .style("fill", "none")
         vis
             .append('text')
             .attr('text-anchor', 'middle')
             .attr('x', xScale(page))
-            .attr('y', .9 * height)
+            .attr('y', .95 * height)
             .text(volName)
+
+
     })
-
-    partMarkers.forEach(function(p) {
-        var page = p[0]; var name = p[1];
-
-        vis
-            .append("line")
-            .attr("x1", xScale(page))  //<<== change your code here
-            .attr("y1", 0 * height)
-            .attr("x2", xScale(page))  //<<== and here
-            .attr("y2", .8 * height)
-            .style("stroke-width", 1)
-            .style("stroke", "gray")
-            .style('opacity',.5)
-            .style("fill", "none")
-        vis
-            .append('text')
-            .attr('text-anchor', 'middle')
-            .attr('class','partMarker')
-            .attr('x', xScale(page))
-            .attr('y', .85 * height)
-            .text(name)
-    })
-
 
     // render an axis
     const xAxis = d3.axisBottom().scale(xScale)

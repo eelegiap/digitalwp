@@ -13,7 +13,7 @@ function render(nodes) {
     //     .range(["#ef476f", "#1b9aaa", "#ffc43d", '#06d6a0', '#b185db', '#6f523b'])
 
     const xScale = d3.scaleLinear()
-        .domain([1, 362])
+        .domain([1, 66])
         .range([0, 1200])
 
     var eHeight = {
@@ -65,6 +65,8 @@ function render(nodes) {
         }
         return eColor
     }
+    var maxcx = 0
+    
     u.enter()
         .append('circle')
         // .attr('r', d => d.radius + 1))
@@ -73,7 +75,11 @@ function render(nodes) {
         .style('fill', d => getColor(d))
         // .attr('opacity', d => getOpacity(d))
         .merge(u)
-        .attr('cx', d => d.x)
+        .attr('cx', function(d) {
+            if (d.x > maxcx) {
+                maxcx = d.x
+            }
+            return d.x})
         .attr('cy', d => d.y)
         .on('click', function (d) {
             if (d3.select(this).attr('class') == 'offclick') {
@@ -101,26 +107,28 @@ function render(nodes) {
 
     u.exit().remove()
 
+    console.log(maxcx)
     // append volume markers
-    var volMarkers = [[1, 'Volume 1'],[66, 'Volume 2'],[164, 'Volume 3'],[260, 'Volume 4'],[334, 'Epilogue'], [362, 'END']]
+    var volMarkers = [[1, 'Volume 1'],[maxcx/(1200/66), 'End Volume 1']]
+    // [66, 'Volume 2'],[164, 'Volume 3'],[260, 'Volume 4'],[334, 'Epilogue'], [362, 'END']]
     var partMarkers = [
         [1, 'Part 1'],
         [26, 'Part 2'],
         [47, 'Part 3'],
-        [66, 'Part 1'],
-        [82, 'Part 2'],
-        [103, 'Part 3'],
-        [129, 'Part 4'],
-        [142, 'Part 5'],
-        [164, 'Part 1'],
-        [187, 'Part 2'],
-        [226, 'Part 3'],
-        [260, 'Part 1'],
-        [276, 'Part 2'],
-        [295, 'Part 3'],
-        [314, 'Part 4'],
-        [334, 'Part 1'],
-        [350, 'Part 2']
+        // [66, 'Part 1'],
+        // [82, 'Part 2'],
+        // [103, 'Part 3'],
+        // [129, 'Part 4'],
+        // [142, 'Part 5'],
+        // [164, 'Part 1'],
+        // [187, 'Part 2'],
+        // [226, 'Part 3'],
+        // [260, 'Part 1'],
+        // [276, 'Part 2'],
+        // [295, 'Part 3'],
+        // [314, 'Part 4'],
+        // [334, 'Part 1'],
+        // [350, 'Part 2']
     ]
 
     volMarkers.forEach(function(p) {
