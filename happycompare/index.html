@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src='lolli.js'></script>
+
+<!-- Create a div where the graph will take place -->
+<style>
+    body {
+        font-family: 'Courier New', Courier, monospace;
+    }
+</style>
+<body>
+    <div class='container'>
+        <br>
+        <div class='row'>
+            <h4>Comparing co-occurrences of characters and three happiness keywords: счастье, радость, & восторг</h4>
+        </div>
+        <br>
+        <div class='row'>
+            <div class='col-md-4'>
+                <div id="schastye"></div>
+            </div>
+            <div class='col-md-4'>
+                <div id="radost"></div>
+            </div>
+            <div class='col-md-4'>
+                <div id="vostorg"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        drawWith('schastye1.csv','#schastye')
+        drawWith('radost1.csv','#radost')
+        drawWith('vostorg1.csv','#vostorg')
+    </script>
+</body>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<style>
+    .row {
+        text-align: left;
+    }
+
+    text {
+        font-size: medium
+    }
+
+    .clicker {
+        cursor: pointer;
+    }
+
+    .счастье {
+        color: #ef476f
+    }
+
+    .радость {
+        color: #1b9aaa
+    }
+
+    .восторг {
+        color: #ffc43d
+    }
+
+    circle {
+        cursor: pointer
+    }
+
+    .bold {
+        font-weight: bold
+    }
+
+    .notbold {
+        font-weight: normal
+    }
+
+    .partMarker {
+        font-size: 12px
+    }
+
+
+    circle {
+        opacity: 0.6;
+    }
+
+    circle:hover {
+        /* opacity: 1; */
+        stroke: navy
+    }
+
+    .axis path,
+    .axis line {
+        stroke: navy;
+    }
+
+    .axis text {
+        fill: navy;
+        font-family: Consolas, monaco, monospace;
+    }
+
+    span {
+        letter-spacing: 3px;
+        color: navy;
+    }
+
+    #js-info {
+        height: 300px;
+        overflow-y: scroll;
+    }
+
+    svg {
+        overflow-x: scroll;
+    }
+
+    .legend {
+        float: right
+    }
+</style>
+
+<body>
+    <div class='container' style='margin: 50px; padding: 0'>
+        <br>
+        <div class='row'>
+            <div class='col-md-12'>
+                <h2>Happiness, joy, and rapture in Tolstoy's <i>War and Peace</i></h2>
+                <br><br>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-12'>
+                <div id="linechart"></div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-12'>
+                <svg width="1200" height="700">
+                    <g class="vis" transform="translate(55, 0)"></g>
+                </svg>
+            </div>
+        </div>
+        <div class='row'>
+            <h3>Comparing co-occurrences of characters and three happiness keywords
+                (<span id='счастье' class='updater счастье'>счастье</span>,
+                <span id='радость' class='updater радость'>радость</span>, &
+                <span id='восторг' class='updater восторг'>восторг</span>).
+            </h3>
+            <h4>Bar chart shows the number of counts of certain happiness words (счастье, радость, & восторг) and
+                different characters (Andrei, Pierre, & Natasha).</h4>
+        </div>
+        <br>
+        <div class='row'>
+            <div class='col-md-6' style='text-align: center'>
+                <div id='graph'></div>
+                <br>
+                <div style='text-align: left;'>
+                    <button id='reset' disabled='true' style='color: gray'>Reset graph</button>
+                </div>
+            </div>
+        </div>
+        <div class='row'>
+            <br><br><br><br>
+        </div>
+    </div>
+</body>
+
+<script src='stackedbar.js'></script>
+<script src='generaljoy.js'></script>
+<script src='linechart.js'></script>
+
+<!-- <script>
+    d3.csv("dec1-generaljoy.csv", function (error, data) {
+        render(data)
+    });
+</script> -->
