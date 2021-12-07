@@ -13,8 +13,14 @@
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
 
+<title>War & Peace (& Happiness)</title>
+
 <!-- Create a div where the graph will take place -->
 <style>
+    .chosen {
+        fill: red
+    }
+
     .row {
         text-align: left;
     }
@@ -39,7 +45,8 @@
         color: #ffc43d
     }
 
-    circle {
+    .legend,
+    .arealegend {
         cursor: pointer
     }
 
@@ -52,85 +59,134 @@
     }
 
     .partMarker {
-        font-size: 12px
+        font-size: smaller
     }
 
-
-    circle {
-        opacity: 0.6;
+    .examples {
+        display: none
     }
 
-    circle:hover {
-        /* opacity: 1; */
-        stroke: navy
+    .clear {
+        fill: white;
+
     }
 
-    .axis path,
-    .axis line {
-        stroke: navy;
-    }
-
-    .axis text {
-        fill: navy;
-        font-family: Consolas, monaco, monospace;
-    }
-
-    span {
-        letter-spacing: 3px;
-        color: navy;
-    }
-
-    #js-info {
-        height: 300px;
-        overflow-y: scroll;
-    }
-
-    svg {
-        overflow-x: scroll;
-    }
-
-    .legend {
-        float: right
+    .figlabel {
+        color: gray;
+        font-style: italic
     }
 </style>
 
 <body>
-    <div class='container' style='margin: 50px; padding: 0'>
+    <div class='container' style='margin: 50px; padding: 0;'>
         <br>
         <div class='row'>
             <div class='col-md-12'>
-                <h2>Happiness, joy, and rapture in Tolstoy's <i>War and Peace</i></h2>
-                <br><br>
+                <h1>Happiness, joy, and rapture in Tolstoy's <i>War and Peace</i></h1>
+                <hr>
+                <h3>Project abstract:</h3>
+                <p>As the basis of my project, I will conduct a data-based investigation of Tolstoy’s use of happiness, joy,
+                    and rapture (счастье, радость, & восторг) in the novel and compare the data-based perspective with existing scholarship 
+                    pertaining to the characterization of selected characters throughout the novel. I
+                    will draw my data from the Russian text, search for forms of the keywords above in the vicinity of
+                    different characters (Andrei, Pierre, Natasha, Nikolai, Sonya, Marya). I also will look at other
+                    words or concepts that frequently occur in the vicinity of these keywords and characters in order to
+                    examine the settings (at the front vs. in the salon), gestures (laughter, tears, speech, etc.), or
+                    objects (eyes, smile, sky, etc.) that are associated with the happiness of different characters. It
+                    is my hypothesis that (1) different characters are more predisposed toward certain intensities of
+                    joy (<i>schast'ye</i> being the most reserved, <i>vostorg</i> being most intense, and <i>radost'</i> somewhere in the
+                    middle), and/or (2) that Tolstoy includes repeated, subtle associations between happiness and other
+                    words that may differ across characters or time. Because of the project’s emphasis on word choice, I
+                    investigate the etymological differences between these word and discuss the implications of the
+                    words used in translation for <i>schast’ye</i>, <i>radost’</i>, and <i>vostorg</i>. Lastly, I hope to briefly discuss the
+                    advantages and disadvantages to examining literature as data.</p>
+                <h3>Data methods:</h3>
+                <p>
+                    I scraped the full Russian version of <i>War and Peace</i> from this website: <a href='https://ilibrary.ru/text/11/index.html' target="_blank">https://ilibrary.ru/text/11/index.html</a>.
+                    Using Python in Jupyter Lab, I assembled my own dataset of the Russian text, using tools from <a href='https://github.com/natasha' target='_blank'>Natasha</a>, Alexander Kukushkin's extensive GitHub respository for Russian natural language processing tasks.
+                    I mostly made use of <a href='https://github.com/natasha/slovnet' target='_blank'>Slovnet</a>, Kukushkin's deep learning model for Russian, to lemmatize words, since I was interested in finding all forms of words (like <i>schast'ye</i>, <i>schastlivy</i>, <i>schastlivo</i>, etc.). 
+                    At this point, I searched through the parts of <i>War and Peace</i> for paragraphs where both a character and one of the happiness keywords appeared.
+                    The "happiness keywords" used in my analysis were <i>schast'ye</i> (happiness), <i>radost'</i>, (joy) and <i>vostorg</i> (rapture/delight).
+                    I assembled a set of paragraphs that contained character/happiness associations, making note of the volume, part, and chapter of the example, the character mentioned, and the "type" of happiness involved.
+                    I went through those paragraphs that contained more than one character name to try to disambiguate <i>which</i> character in particular was associated with happiness during that paragraph and removed by hand anything clearly incorrect. 
+                </p>
             </div>
         </div>
         <div class='row'>
             <div class='col-md-12'>
-                <div id="linechart"></div>
+                <hr>
+                <h2><span class='figlabel'>Figure 1: </span>
+                    Happiness over time for
+                    <span style='color: #3d405b'>Andrei</span>,
+                    <span style='color: #81b29a'>Pierre</span>, &
+                    <span style='color: #e07a5f'>Natasha</span>
+                </h2>
+                <h4>Line charts shows aggregated counts of the happiness keywords (счастье, радость, & восторг). Count
+                    reflects the total count in the part.</h4>
+                <br>
+                <div id="line1"></div>
+                <hr>
             </div>
         </div>
         <div class='row'>
             <div class='col-md-12'>
-                <svg width="1200" height="700">
-                    <g class="vis" transform="translate(55, 0)"></g>
-                </svg>
+                <button id='showexamples'>Show textual examples mapped onto the graph</button>
+            </div>
+        </div>
+        <div class='row examples'>
+            <div class='col-md-12'>
+                <h3><span class='figlabel'>Textual examples: </span>Instances of <span class='счастье'>happiness</span>, <span class='радость'>joy</span>, and <span
+                        class='восторг'>rapture</span> for <span id='chosenchar' style='color: gray'>(select dot
+                        above)</span> <span id='timespan'></span></h3>
+            </div>
+        </div>
+        <div class='row examples' style='max-height: 400px; overflow: scroll;'>
+            <div class='col-md-4'>
+                <h4>Happiness - <i>schast'ye</i>/счастье <span id='счастьеct'></span></h4>
+                <div id='счастьеexamples'></div>
+            </div>
+            <div class='col-md-4'>
+                <h4>Joy - <i>radost'</i>/радость <span id='радостьct'></span></h4>
+                <div id='радостьexamples'></div>
+            </div>
+            <div class='col-md-4'>
+                <h4>Rapture - <i>vostorg</i>/восторг <span id='восторгct'></span></h4>
+                <div id='восторгexamples'></div>
             </div>
         </div>
         <div class='row'>
+            <div class='col-md-12'>
+                <hr>
+                <h3><span class='figlabel'>Figure 2: </span>Relative occurrences of <span
+                        class='счастье'>happiness</span>, <span class='радость'>joy</span>, and <span
+                        class='восторг'>rapture</span> throughout the novel for <span
+                        style='text-decoration: underline;' id='thischar'></span></h3>
+                <br>
+                <div id="stackedline"></div>
+            </div>
+        </div>
+        <div class='row'>
+            <br>
+            <hr>
             <h3>Comparing co-occurrences of characters and three happiness keywords
                 (<span id='счастье' class='updater счастье'>счастье</span>,
                 <span id='радость' class='updater радость'>радость</span>, &
                 <span id='восторг' class='updater восторг'>восторг</span>).
             </h3>
-            <h4>Bar chart shows the number of counts of certain happiness words (счастье, радость, & восторг) and
+            <h4>Bar chart shows the number of counts of certain happiness words (<i>schast'ye</i>/счастье, <i>radost'</i>/радость, & <i>vostorg</i>/восторг) and
                 different characters (Andrei, Pierre, & Natasha).</h4>
         </div>
         <br>
         <div class='row'>
             <div class='col-md-6' style='text-align: center'>
+                <h3><span class='figlabel'>Figure 3: </span><span class='счастье'>happy</span> vs. <span
+                        class='радость'>joyful</span> vs. <span class='восторг'>enraptured</span></h3>
+                <h4>Total associations over whole novel.</h4><button id='reset' disabled='true'
+                    style='color: gray'>Reset graph</button>
                 <div id='graph'></div>
                 <br>
                 <div style='text-align: left;'>
-                    <button id='reset' disabled='true' style='color: gray'>Reset graph</button>
+
                 </div>
             </div>
         </div>
@@ -143,9 +199,7 @@
 <script src='stackedbar.js'></script>
 <script src='generaljoy.js'></script>
 <script src='linechart.js'></script>
-
-<!-- <script>
-    d3.csv("dec1-generaljoy.csv", function (error, data) {
-        render(data)
-    });
-</script> -->
+<script src='stackedline.js'></script>
+<script>
+    drawLineChart("alltypes.csv", 'line1')
+</script>
