@@ -71,8 +71,8 @@ function update(emotion) {
         }
 
         subgroups.forEach(function(e, i) {
-            svg.append("circle").attr('class', e).attr("cx", width).attr("cy", 50 + i*25).attr("r", 8).style("fill", color(e))
-        svg.append("text").attr('class', e).attr("x", width + 20).attr("y", 50 + i*25).text(lookup[e]).style("font-size", "15px").attr("alignment-baseline", "middle")
+            svg.append("circle").attr('class', e).attr("cx", width).attr("cy", 50 + i*25).attr("r", 8).style("fill", color(e)).attr('cursor','pointer').style('stroke','gray')
+            svg.append("text").attr('class', e).attr("x", width + 20).attr("y", 50 + i*25).text(lookup[e]).style("font-size", "15px").attr("alignment-baseline", "middle")
         })
 
         if (emotion != '') {
@@ -119,6 +119,7 @@ function update(emotion) {
             .attr("y", function (d) { return y(d[1]); })
             .attr("height", function (d) { return y(d[0]) - y(d[1]); })
             .attr("width", x.bandwidth())
+            .attr("stroke", "grey")
     })
 }
 
