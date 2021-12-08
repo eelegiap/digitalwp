@@ -100,7 +100,7 @@ function drawLineChart(csvFile, elt) {
             .attr('r', 5)  
             .attr('cursor','pointer')
             .attr('stroke','transparent')
-            .attr('stroke-width',18)
+            .attr('stroke-width',20)
             .attr('display','none')
         })
         var showExamples = false
@@ -123,6 +123,8 @@ function drawLineChart(csvFile, elt) {
             } else {
                 d3.selectAll('.dot').attr('display','none')
                 $('.examples').hide()
+                d3.select('#chosenchar').text('...').style('color','gray')
+                d3.select('#timespan').text('')
                 d3.select('#showexamples').text('Show textual examples mapped onto the graph')
                 emotions.forEach(function(emo) {
                     d3.select('#'+emo+'examples').html('')
@@ -137,10 +139,10 @@ function drawLineChart(csvFile, elt) {
         var emotions = ['счастье','радость','восторг']
         d3.selectAll('.dot')
         .on('mouseover',function(d) {
-            d3.select(this).attr('r',8)
+            d3.select(this).transition().attr('r',10)
         })
         .on('mouseout',function() {
-            d3.select(this).attr('r',5)
+            d3.select(this).transition().attr('r',5)
         })
         // clicking a dot
         .on('click', function (d) {
@@ -212,16 +214,16 @@ function drawLineChart(csvFile, elt) {
             var pathClass = path.attr('class')
 
             if (pathClass == 'show') {
-                path.attr('stroke-width', 0).attr('class', 'hide')
-                d3.select(this).style('fill','white')
+                path.transition().attr('stroke-width', 0).attr('class', 'hide')
+                d3.select(this).transition().style('fill','white')
                 if (showExamples) {
-                    d3.selectAll('.dot'+char).attr('display','none')
+                    d3.selectAll('.dot'+char).transition().attr('display','none')
                 }
             } else {
-                path.attr('stroke-width', 1.5).attr('class', 'show')
-                d3.select(this).style('fill', color(char))
+                path.transition().attr('stroke-width', 1.5).attr('class', 'show')
+                d3.select(this).transition().style('fill', color(char))
                 if (showExamples) {
-                    d3.selectAll('.dot'+char).attr('display','show')
+                    d3.selectAll('.dot'+char).transition().attr('display','show')
                 }
             }
         })

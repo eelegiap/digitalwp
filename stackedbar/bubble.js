@@ -8,9 +8,11 @@ d3.selectAll('.bubblebutton').on('click', function() {
 
 function drawBubbles(character) {
     $('#bubble').empty()
+    d3.select('#bubbleexamples').html('')
+    d3.select('#bubbleword').text('(select bubble)')
 
-    d3.json('bubble/'+character+'data.json', function (dataset) {
-        d3.json('bubble/'+character+'sents.json', function (sentdata) {
+    d3.json('bubbledata/'+character+'data.json', function (dataset) {
+        d3.json('bubbledata/'+character+'sents.json', function (sentdata) {
             var diameter = 600;
     
             function color(i) {
