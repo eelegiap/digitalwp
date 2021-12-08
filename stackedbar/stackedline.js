@@ -7,7 +7,7 @@ function updateArea(char) {
 
         // set the dimensions and margins of the graph
         var margin = { top: 10, right: 80, bottom: 100, left: 60 },
-            width = 1200 - margin.left - margin.right,
+            width = $(window).width()-100 - margin.left - margin.right,
             height = 500 - margin.top - margin.bottom;
 
         // append the svg object to the body of the page
@@ -18,6 +18,8 @@ function updateArea(char) {
             .append("g")
             .attr("transform",
                 "translate(" + margin.left + "," + margin.top + ")");
+
+        svg.append("text").attr("x", width-15).attr("y", 25).text('Select one:').style("font-size", "15px").attr("alignment-baseline", "middle")
 
         var characters = ['Andrei', 'Pierre', 'Natasha']
         characters.forEach(function (char, i) {

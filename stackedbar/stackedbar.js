@@ -6,7 +6,7 @@ function update(emotion) {
 
         // set the dimensions and margins of the graph
         var margin = { top: 10, right: 100, bottom: 30, left: 50 },
-            width = 500 - margin.left - margin.right,
+            width = .37*$(window).width() - margin.left - margin.right,
             height = 400 - margin.top - margin.bottom;
 
         // append the svg object to the body of the page
@@ -71,7 +71,7 @@ function update(emotion) {
         }
 
         subgroups.forEach(function(e, i) {
-            svg.append("circle").attr('class', e).attr("cx", width).attr("cy", 50 + i*25).attr("r", 8).style("fill", color(e)).attr('cursor','pointer').style('stroke','gray')
+            svg.append("circle").attr('class', e+' circle3a').attr("cx", width).attr("cy", 50 + i*25).attr("r", 8).style("fill", color(e)).attr('cursor','pointer').style('stroke','gray')
             svg.append("text").attr('class', e).attr("x", width + 20).attr("y", 50 + i*25).text(lookup[e]).style("font-size", "15px").attr("alignment-baseline", "middle")
         })
 
@@ -84,7 +84,7 @@ function update(emotion) {
             d3.select('#reset').style('color','gray')
         }
 
-        d3.selectAll('circle')
+        d3.selectAll('.circle3a')
             .on('mouseover', function () {
                 d3.select(this).attr('r', 10)
             })
@@ -92,7 +92,7 @@ function update(emotion) {
                 d3.select(this).attr('r', 8)
             })
             .on('click', function () {
-                var emotion = d3.select(this).attr('class')
+                var emotion = d3.select(this).attr('class').split(' ')[0]
                 update(emotion)
             })
         

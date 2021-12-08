@@ -2,7 +2,7 @@ function drawLineChart(csvFile, elt) {
 
     // set the dimensions and margins of the graph
     var margin = { top: 10, right: 80, bottom: 100, left: 60 },
-        width = 1200 - margin.left - margin.right,
+        width = $(window).width()-100 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
@@ -53,6 +53,8 @@ function drawLineChart(csvFile, elt) {
             .domain(res)
             .range(['#3d405b', '#81b29a', '#e07a5f'])
 
+        svg.append("text").attr("x", width-15).attr("y", 25).text('Select one:').style("font-size", "15px").attr("alignment-baseline", "middle")
+        
         res.forEach(function (char, i) {
             svg.append("circle").attr('class', char + ' legend').attr("cx", width).attr("cy", 50 + i * 25).attr("r", 7).style("fill", color(char)).style('stroke', color(char))
             svg.append("text").attr('class', char + ' legend').attr("x", width + 20).attr("y", 50 + i * 25).text(char).style("font-size", "15px").attr("alignment-baseline", "middle")
@@ -121,7 +123,7 @@ function drawLineChart(csvFile, elt) {
             } else {
                 d3.selectAll('.dot').attr('display','none')
                 $('.examples').hide()
-                d3.select('#showexamples').text('Show examples on graph')
+                d3.select('#showexamples').text('Show textual examples mapped onto the graph')
                 emotions.forEach(function(emo) {
                     d3.select('#'+emo+'examples').html('')
                     d3.select('#'+emo+'ct').text('')

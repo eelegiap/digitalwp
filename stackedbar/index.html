@@ -10,9 +10,12 @@
 <!-- Latest compiled JavaScript -->
 
 <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
 
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
@@ -29,21 +32,29 @@
     .row {
         text-align: left;
     }
+
     h1 {
         font-size: 32px
     }
+
     h2 {
         font-size: 26px
     }
+
     h3 {
         font-size: 24px
     }
+
     h4 {
         font-size: 18px
     }
-    p,.col-md-4{
+
+    p,
+    .col-md-4,
+    button, ul, ol, li, html{
         font-size: 14px
     }
+
     .clicker {
         cursor: pointer;
     }
@@ -99,6 +110,9 @@
     .center {
         text-align: center
     }
+    .clickable {
+        cursor: pointer
+    }
 </style>
 
 <body>
@@ -108,7 +122,17 @@
             <div class='col-md-12'>
                 <h1>Happiness, joy, and rapture in Tolstoy's <i>War and Peace</i></h1>
                 <hr>
-                <h3>Project abstract:</h3>
+                <h3>Table of Contents</h3>
+                <h4><a href='#projectabstract'>I. Project abstract</a></h4>
+                <h4><a href='#datamethods'>II. Data methods</a></h4>
+                <h4><a href='#dae'>III. Definitions and etymology</a></h4>
+                <h4><a href='#wordchoice'>IV. Discussion of word choice</a></h4>
+                <h4><a href='#ct'>V. Comparing translations</a></h4>
+                <h4><a href='#visualization'>VI. Visualization</a></h4>
+                <h4><a href='#discuss'>VII. Discussion of the data</a></h4>
+                <h4><a href='#limit'>VIII. Limitations and further questions</a></h4>
+                <hr>
+                <h3 id='projectabstract'>I. Project abstract:</h3>
                 <p>As the basis of my project, I will conduct a data-based investigation of Tolstoy’s use of happiness,
                     joy,
                     and rapture (счастье, радость, & восторг) in the novel and compare the data-based perspective with
@@ -128,7 +152,7 @@
                     words used in translation for <i>schast’ye</i>, <i>radost’</i>, and <i>vostorg</i>. Lastly, I hope
                     to briefly discuss the
                     advantages and disadvantages to examining literature as data.</p>
-                <h3>Data methods:</h3>
+                <h3 id='datamethods'>II. Data methods:</h3>
                 <p>
                     I scraped the full Russian version of <i>War and Peace</i> from this website: <a
                         href='https://ilibrary.ru/text/11/index.html'
@@ -157,33 +181,34 @@
         </div>
         <div class='row'>
             <div class='col-md-12'>
-                <h3>Definitions and etymology in English and Russian</h3>
+                <h3 id='dae'>III. Definitions and etymology in English and Russian</h3>
                 <p>This project is interested in occurrences of the words happiness, joy, and rapture when used in the
                     context of contentment, pleasure, and emotional happiness, although these words can have alternate
                     meanings (like
                     "happy coincidence," where happy is more akin to fortunate). Definitions and etymology are
                     taken from the Oxford English Dictionary online.
                     Russian definitions come from Kuznetsov's <i>Comprehensive Explanatory Dictionary of the Russian
-                        Language</i>. Russian etymology from Vasmer's <i>Etymological Dictionary of the Russian Language</i> (Translations of excerpts from both Russian dictionaries are my own).
+                        Language</i>. Russian etymology from Vasmer's <i>Etymological Dictionary of the Russian
+                        Language</i> (Translations of excerpts from both Russian dictionaries are my own).
                 </p>
             </div>
         </div>
         <div class='row'>
             <div class='col-md-4'>
                 <div style='text-align: center;'>
-                    <h4>Happiness</h4>
+                    <h4 class='счастье'>Happiness</h4>
                     <h4><i>schast'ye</i>/счастье</h4>
                 </div>
             </div>
             <div class='col-md-4'>
                 <div style='text-align: center;'>
-                    <h4>Joy</h4>
+                    <h4 class='радость'>Joy</h4>
                     <h4> <i>radost'</i>/радость</h4>
                 </div>
             </div>
             <div class='col-md-4'>
                 <div style='text-align: center;'>
-                    <h4>Rapture/delight</h4>
+                    <h4 class='восторг'>Rapture/delight</h4>
                     <h4><i>vostorg</i>/восторг</h4>
                 </div>
             </div>
@@ -191,202 +216,465 @@
         <br>
         <div class="accordion" id="accordionExample">
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <h4>English definitions (Oxford English Dictionary)</h4>
-                </button>
-              </h2>
-              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" >
-                <div class="accordion-body">
-                    <div class='row'>
-                        <div class='col-md-4'>
-                            <b>Definition of happiness (English)</b>:
-                            <ol>
-                                <li>Feeling or showing a deep sense of pleasure or contentment, esp. arising from satisfaction with
-                                    one's circumstances or condition; (also) marked by or expressive of such a feeling. More
-                                    generally in weakened use: glad, pleased; satisfied, content.</li>
-                            </ol>
-            
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <h4>English definitions (Oxford English Dictionary)</h4>
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
+                    <div class="accordion-body">
+                        <div class='row'>
+                            <div class='col-md-4'>
+                                <b>Definition of happiness (English)</b>:
+                                <ol>
+                                    <li>Feeling or showing a deep sense of pleasure or contentment, esp. arising from
+                                        satisfaction with
+                                        one's circumstances or condition; (also) marked by or expressive of such a
+                                        feeling. More
+                                        generally in weakened use: glad, pleased; satisfied, content.</li>
+                                </ol>
+
+                            </div>
+                            <div class='col-md-4'>
+                                <b>Definition of joy (English)</b>:
+                                <ol>
+                                    <li>A vivid emotion of pleasure arising from a sense of well-being or satisfaction;
+                                        the feeling or
+                                        state of being highly pleased or delighted; exultation of spirit; gladness,
+                                        delight.</li>
+                                </ol>
+                            </div>
+                            <div class='col-md-4'>
+                                <b>Definition of rapture (English)</b>:
+                                <ol>
+                                    <li>Chiefly in plural. A state, condition, or fit of intense delight or enthusiasm.
+                                        Now frequently
+                                        <i>to be in raptures:</i> to be delightedly enthusiastic. <i>to go into
+                                            raptures:</i> to talk
+                                        with (esp. affected) enthusiasm and delight.
+                                    </li>
+                                </ol>
+                            </div>
                         </div>
-                        <div class='col-md-4'>
-                            <b>Definition of joy (English)</b>:
-                            <ol>
-                                <li>A vivid emotion of pleasure arising from a sense of well-being or satisfaction; the feeling or
-                                    state of being highly pleased or delighted; exultation of spirit; gladness, delight.</li>
-                            </ol>
-                        </div>
-                        <div class='col-md-4'>
-                            <b>Definition of rapture (English)</b>:
-                            <ol>
-                                <li>Chiefly in plural. A state, condition, or fit of intense delight or enthusiasm. Now frequently
-                                    <i>to be in raptures:</i> to be delightedly enthusiastic. <i>to go into raptures:</i> to talk
-                                    with (esp. affected) enthusiasm and delight.
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                    <div class='row'>
-                        <div class='col-md-4'>
-                            <b>Alternate definitions:</b>
-                            <ol>
-                                <li>
-                                    Of a person: favoured by good fortune; lucky, fortunate; successful. Occasionally in extended
-                                    use. Now somewhat <i>rare.</i>
-                                </li>
-                                <li>
-                                    With infinitive: willing, ready, eager to do something.
-                                </li>
-                                <li>
-                                    <i>colloquial.</i> Slightly intoxicated, esp. so as to feel mildly elated. (1662—1998)
-                                </li>
-                            </ol>
-                        </div>
-                        <div class='col-md-4'>
-                            <b>Alternate definitions:</b>
-                            <ol>
-                                <li>
-                                    A pleasurable state or condition; a state of happiness or felicity; esp. the perfect bliss or
-                                    beatitude of heaven; hence, the place of bliss, paradise, heaven; <i>Obsolete or archaic.</i>
-                                    (c1275—1673)
-                                </li>
-                            </ol>
-                        </div>
-                        <div class='col-md-4'>
-                            <b>Alternate definitions:</b>
-                            <ol>
-                                <li>
-                                    As a mass noun: transport of mind, mental exaltation or absorption, ecstasy; (now esp.) ecstatic
-                                    delight or joy. (1598—1990)
-                                </li>
-                                <li>
-                                    The action or an act of carrying off a woman by force; abduction. Obsolete.
-                                    (1595—1752)
-                                </li>
-                                <li>
-                                    The act of conveying a person from one place to another, esp. to heaven; the fact of being so
-                                    conveyed. Obsolete. (1609—1895)
-                                </li>
-                            </ol>
+                        <div class='row'>
+                            <div class='col-md-4'>
+                                <b>Alternate definitions:</b>
+                                <ol>
+                                    <li>
+                                        Of a person: favoured by good fortune; lucky, fortunate; successful.
+                                        Occasionally in extended
+                                        use. Now somewhat <i>rare.</i>
+                                    </li>
+                                    <li>
+                                        With infinitive: willing, ready, eager to do something.
+                                    </li>
+                                    <li>
+                                        <i>colloquial.</i> Slightly intoxicated, esp. so as to feel mildly elated.
+                                        (1662—1998)
+                                    </li>
+                                </ol>
+                            </div>
+                            <div class='col-md-4'>
+                                <b>Alternate definitions:</b>
+                                <ol>
+                                    <li>
+                                        A pleasurable state or condition; a state of happiness or felicity; esp. the
+                                        perfect bliss or
+                                        beatitude of heaven; hence, the place of bliss, paradise, heaven; <i>Obsolete or
+                                            archaic.</i>
+                                        (c1275—1673)
+                                    </li>
+                                </ol>
+                            </div>
+                            <div class='col-md-4'>
+                                <b>Alternate definitions:</b>
+                                <ol>
+                                    <li>
+                                        As a mass noun: transport of mind, mental exaltation or absorption, ecstasy;
+                                        (now esp.) ecstatic
+                                        delight or joy. (1598—1990)
+                                    </li>
+                                    <li>
+                                        The action or an act of carrying off a woman by force; abduction. Obsolete.
+                                        (1595—1752)
+                                    </li>
+                                    <li>
+                                        The act of conveying a person from one place to another, esp. to heaven; the
+                                        fact of being so
+                                        conveyed. Obsolete. (1609—1895)
+                                    </li>
+                                </ol>
+                            </div>
                         </div>
                     </div>
                 </div>
-              </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    <h4>Russian definitions (Большой толковый словарь русского языка, Кузнецов)</h4>
-                </button>
-              </h2>
-              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" >
-                <div class="accordion-body">
-                    <div class='row'>
-                        <div class='col-md-4'>
-                            <b>Definition of schast'ye/счастье</b>:
-                            <ol>
-                                <li>Состояние высшей удовлетворённости жизнью,
-                                    чувство глубокого довольства и радости, испытываемое кем-л.; внешнее проявление этого чувства.
-                                    [A state of high satisfaction with life, a feeling of deep contentment and joy experienced by
-                                    smb.; external manifestation of this feeling.]
-                                </li>
-                            </ol>
-            
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <h4>Russian definitions (Oxford Russian-English Dictionary & Большой толковый словарь русского
+                            языка)</h4>
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
+                    <div class="accordion-body">
+                        <div class='row'>
+                            <div class='col-md-4'>
+                                <b>English translation of schast'ye/счастье:</b>
+                                <ol>
+                                    <li>
+                                        happiness
+                                    </li>
+                                    <li>luck, good fortune</li>
+                                </ol>
+                            </div>
+                            <div class='col-md-4'>
+                                <b>English translation of radost'/радость:</b>
+                                <ol>
+                                    <li>
+                                        gladness, joy
+                                    </li>
+                                </ol>
+                            </div>
+                            <div class='col-md-4'>
+                                <b>English translation of vostorg/восторг:</b>
+                                <ol>
+                                    <li>delight, rapture</li>
+                                </ol>
+                            </div>
                         </div>
-                        <div class='col-md-4'>
-                            <b>Definition of radost'/радость</b>:
-                            <ol>
-                                <li>Чувство удовольствия, ощущение большого душевного удовлетворения. [Feeling of satisfaction,
-                                    feeling of great spiritual satisfaction.]</li>
-                            </ol>
+                        <div class='row'>
+                            <div class='col-md-4'>
+                                <b>Definition of schast'ye/счастье</b>:
+                                <ol>
+                                    <li>Состояние высшей удовлетворённости жизнью,
+                                        чувство глубокого довольства и радости, испытываемое кем-л.; внешнее проявление
+                                        этого чувства.
+                                        [A state of high satisfaction with life, a feeling of deep contentment and joy
+                                        experienced by
+                                        smb.; external manifestation of this feeling.]
+                                    </li>
+                                </ol>
+
+                            </div>
+                            <div class='col-md-4'>
+                                <b>Definition of radost'/радость</b>:
+                                <ol>
+                                    <li>Чувство удовольствия, ощущение большого душевного удовлетворения. [Feeling of
+                                        satisfaction,
+                                        feeling of great spiritual satisfaction.]</li>
+                                </ol>
+                            </div>
+                            <div class='col-md-4'>
+                                <b>Definition of vostorg/восторг</b>:
+                                <ol>
+                                    <li>Необычайно радостное состояние, чувство восхищения. [An unusually joyful state,
+                                        a sense of the
+                                        highest degree of pleasure.]
+                                    </li>
+                                </ol>
+                            </div>
                         </div>
-                        <div class='col-md-4'>
-                            <b>Definition of vostorg/восторг</b>:
-                            <ol>
-                                <li>Необычайно радостное состояние, чувство восхищения. [An unusually joyful state, a sense of the
-                                    highest degree of pleasure.]
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                    <div class='row'>
-                        <div class='col-md-4'>
-                            <b>Alternate definitions:</b>
-                            <ol>
-                                <li>
-                                    Успех, удача [Success, luck]
-                                </li>
-                                <li>Разг. Участь, доля, судьба [Colloquial. Fate, share, destiny]</li>
-                            </ol>
-                        </div>
-                        <div class='col-md-4'>
-                        </div>
-                        <div class='col-md-4'>
+                        <div class='row'>
+                            <div class='col-md-4'>
+                                <b>Alternate definitions:</b>
+                                <ol>
+                                    <li>
+                                        Успех, удача [Success, luck]
+                                    </li>
+                                    <li>Разг. Участь, доля, судьба [Colloquial. Fate, share, destiny]</li>
+                                </ol>
+                            </div>
+                            <div class='col-md-4'>
+                            </div>
+                            <div class='col-md-4'>
+                            </div>
                         </div>
                     </div>
                 </div>
-              </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    <h4>English and Russian etymology</h4>
-                </button>
-              </h2>
-              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" >
-                <div class="accordion-body">
-                    <div class='row'>
-                        <div class='col-md-4'>
-                            <p><b>Happiness</b> - Derived from “hap” meaning good fortune, chance</p>
-                            <p><b>Shast'ye/Счастье</b> - Orthodox origins (sъčęstь̂je) from sъ-: Old-Ind. su- "good" + * čęst
-                                "part", that is, "good lot" </p>
-                        </div>
-                        <div class='col-md-4'>
-                            <p><b>Joy</b> - Middle English: from Old French <i>joie</i>, based on Latin <i>gaudium</i>, from
-                                <i>gaudere</i> ‘rejoice’
-                            </p>
-                            <p><b>Radost'/Радость</b> - Possible relationship with the Anglo. rót "joyful, noble", Old Norse. rǿtask
-                                "to clear up, to have fun", </p>
-                        </div>
-                        <div class='col-md-4'>
-                            <p><b>Rapture</b> - late 16th century (in the sense ‘seizing and carrying off’): from obsolete French,
-                                or from medieval Latin <i>raptura</i> ‘seizing’, partly influenced by rapt.]</p>
-                            <p><b>Vostorg/Восторг</b> - From <i>voz</i>+ <i>torgat'</i> (воз + торгать). <i>Voz</i> coming from
-                                <i>voz</i> (cart/wagon) originally – conveyance, transference. <i>Torgat'</i> may have its roots in
-                                the Indo-European tr̥ṇḗḍhi "shattered, broken" and is possibly related to Russian
-                                <i>terzat'</i>/терзать, meaning torment.</p>
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <h4>English and Russian etymology (Oxford English Dictionary & Vasmer Etymological Dictionary)
+                        </h4>
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree">
+                    <div class="accordion-body">
+                        <div class='row'>
+                            <div class='col-md-4'>
+                                <p><b>Happiness</b> - Derived from “hap” meaning good fortune, chance</p>
+                                <p><b>Shast'ye/Счастье</b> - Orthodox origins (sъčęstь̂je) from sъ-: Old-Ind. su- "good"
+                                    + * čęst
+                                    "part", that is, "good lot" </p>
+                            </div>
+                            <div class='col-md-4'>
+                                <p><b>Joy</b> - Middle English: from Old French <i>joie</i>, based on Latin
+                                    <i>gaudium</i>, from
+                                    <i>gaudere</i> ‘rejoice’
+                                </p>
+                                <p><b>Radost'/Радость</b> - Possible relationship with the Anglo. rót "joyful, noble",
+                                    Old Norse. rǿtask
+                                    "to clear up, to have fun", </p>
+                            </div>
+                            <div class='col-md-4'>
+                                <p><b>Rapture</b> - late 16th century (in the sense ‘seizing and carrying off’): from
+                                    obsolete French,
+                                    or from medieval Latin <i>raptura</i> ‘seizing’, partly influenced by rapt.]</p>
+                                <p><b>Vostorg/Восторг</b> - From <i>voz</i>+ <i>torgat'</i> (воз + торгать). <i>Voz</i>
+                                    coming from
+                                    <i>voz</i> (cart/wagon) originally – conveyance, transference. <i>Torgat'</i> may
+                                    have its roots in
+                                    the Indo-European tr̥ṇḗḍhi "shattered, broken" and is possibly related to Russian
+                                    <i>terzat'</i>/терзать, meaning torment and <i>dyorgat'</i>/дёргать, meaning to tug
+                                    or pull at.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-              </div>
             </div>
-          </div>
+        </div>
 
         <div class='row'>
             <div class='col-md-12'>
                 <br><br>
-                <h3>Discussion of Russian and English definitions and etymology</h3>
-            </div>
-        </div>
-        <div class='row'>
-            <div class='col-md-4'>
-
-            </div>
-            <div class='col-md-4'>
-
-            </div>
-            <div class='col-md-4'>
-
+                <h3 id='wordchoice'>IV. Discussion of Russian and English definitions and etymology</h3>
+                <p>
+                    Because this project deals with the Russian text, I am concerned with the specific words
+                    <i>schast'ye</i>, <i>radost'</i>, and <i>vostorg</i> -- the words used in English translations may
+                    vary among happiness, gladness, joy, delight, rapture, and other close synonyms.
+                    However, the most common substitution for <i>schast'ye</i> is happiness, <i>radost'</i> is joy, and
+                    <i>vostorg</i> is rapture or delight, depending on the translation.
+                    The words happiness and <i>schast'ye</i> have a very close correspondence based on their etymology,
+                    both derived from the original meaning of "good fortune" or "good lot."
+                    Joy and <i>radost'</i> have a less clear etymological link. The English word joy comes from the
+                    Latin verb <i>gaudere</i>, "to rejoice," while the etymological origins of <i>radost'</i> are much
+                    less clear.
+                    Rapture and <i>vostorg</i> both have interesting alternate definitions and etymological histories.
+                    They follow similar grammatical structure "to be in rapture" and "<i>byt' v vostorg'ye</i>".
+                    Both originate from roots of conveyance and transportation. Rapture has religious connotations in
+                    English, and while
+                    <i>vostorg</i> does not have explicitly religious roots, the prefix <i>voz</i> is associated with
+                    religious terminology like <i>Voznesenie</i>/Вознесение, or Ascension Day.
+                    Although the <i>Oxford Russian-English Dictionary</i> defines <i>vostorg</i> as "delight, rapture,"
+                    rapture seems to be a more apt translation of <i>vostorg</i> because of their religious associations
+                    which delight lacks.
+                    "Ecstasy" (1. the state of being ‘beside oneself’, thrown into a frenzy or a stupor, with anxiety,
+                    astonishment, fear, or passion. 2. an exalted state of feeling which engrosses the mind to the
+                    exclusion of thought; rapture, transport.)
+                    is sometimes also used in place of <i>vostorg</i> in English translations, but ecstasy is not as
+                    associated with pleasure and good feeling as words like delight and rapture.
+                    I refer to the following pairs -- happy/<i>schast'ye</i>, joy/<i>radost'</i>, and
+                    rapture/<i>vostorg</i> -- for the purposes of my project
+                    because their definitions generally line up in terms of intensity of happiness
+                    (happy/<i>schast'ye</i> being least intense, joy/<i>radost'</i> next most intense, and
+                    rapture/<i>vostorg</i> most intense).
+                    The English definitions of these Russian words in the <i>Oxford Russian-English Dictionary</i>
+                    correspond with this ranking,
+                    but the ranking is not entirely clear based on the Russian definitions from the <i>Comprehensive
+                        Explanatory Dictionary of the Russian
+                        Language</i>. More investigation of Russian dictionaries would be helpful in disambiguating the
+                    subtle emotional differences between <i>schast'ye</i> and <i>radost'</i>.
+                </p>
             </div>
         </div>
         <div class='row'>
             <div class='col-md-12'>
                 <hr>
-                <h2><span class='figlabel'>Figure 1: </span>
+                <h3 id='ct'>V. Comparing translations</h3>
+                <p>
+                    I compare a few English translations of <i>War and Peace</i> to see the usual translations of the
+                    words <i>schast'ye</i>, <i>radost'</i>, and <i>vostorg</i>.
+                    In this project, I am primarily concerned with the Russian word choice, but of course, the choices
+                    in English translation are highly impactful
+                    on how readers perceive the characters and the novel as a whole and raise questions about the
+                    subtleties of translating emotional states.
+                </p>
+                <br>
+                <h4 style='text-align: center'>Pierre in his new state of mind after his release from the prisoner of
+                    war camp (Vol. 4, Part 4, Chapter XIX)</h4>
+                <p>The translations of <i>schast'ye</i> and <i>radost'</i> are overall very consistent across the
+                    translations. In Garnett's early translation, she translates one instance of <i>schastlivymi</i> as
+                    "blissful" instead of "happy." Maude, in 1922, translates <i>radost'</i> as "pleasure" while the
+                    other two translations translate it as "joy."</p>
+                <br>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-3'>
+                <h4>Original Russian</h4>
+                <p>
+                    <span class='радость'>РАДОСТНОЕ</span>, неожиданное сумасшествие, к которому Пьер считал себя
+                    неспособным, овладело им. Весь
+                    смысл жизни, не для него одного, но для всего мира, казался ему заключающимся только в его любви и в
+                    возможности ее любви к нему. Иногда все люди казались ему занятыми только одним — его будущим
+                    <span class='счастье'>СЧАСТЬЕМ</span>. Ему казалось иногда, что все они <span
+                        class='радость'>РАДУЮТСЯ</span> так же, как и он сам, и только стараются скрыть
+                    эту <span class='радость'>РАДОСТЬ</span>, притворяясь занятыми другими интересами. В каждом слове и
+                    движении он видел намеки на
+                    свое <span class='счастье'>СЧАСТЬЕ</span>. Он часто удивлял людей, встречавшихся с ним, своими
+                    значительными, выражавшими тайное
+                    согласие, <span class='счастье'>СЧАСТЛИВЫМИ</span> взглядами и улыбками. Но когда он понимал, что
+                    люди могли не знать про его
+                    <span class='счастье'>СЧАСТЬЕ</span>, он от всей души жалел их и испытывал желание как-нибудь
+                    объяснить им, что все то, чем они
+                    заняты, есть совершенный вздор и пустяки, не стоящие внимания.
+                </p>
+            </div>
+            <div class='col-md-3'>
+                <h4>Garnett (1904)</h4>
+                <p>
+                    A <span class='радость'>joyful</span>, unexpected frenzy, of which Pierre had believed himself
+                    incapable, seized upon him. The whole
+                    meaning of life, not for him only, but for all the world, seemed to him centred in his love and the
+                    possibility of her loving him. Sometimes all men seemed to him to be absorbed in nothing else than
+                    his
+                    future <span class='счастье'>happiness</span>. It seemed to him sometimes that they were all <span
+                        class='радость'>rejoicing</span> as he was himself, and were
+                    only trying to conceal that <span class='радость'>joy</span>, by pretending to be occupied with
+                    other interests. In every word and
+                    gesture he saw an allusion to his <span class='счастье'>happiness</span>. He often surprised people
+                    by his significant and <span class='счастье'>blissful</span>
+                    looks and smiles, that seemed to express some secret understanding wih him. But when he realised
+                    that
+                    people could not know of his <span class='счастье'>happiness</span>, he pitied them from the bottom
+                    of his heart, and felt an impulse
+                    to try to make them somehow understand that all that they were interested in was utter nonsense and
+                    trifles not deserving of attention.
+                </p>
+            </div>
+            <div class='col-md-3'>
+                <h4>Maude (1922)</h4>
+                <p>
+                    A <span class='радость'>joyful</span>, unexpected frenzy, of which he had thought himself incapable,
+                    possessed him. The whole
+                    meaning of life—not for him alone but for the whole world—seemed to him centered in his love and the
+                    possibility of being loved by her. At times everybody seemed to him to be occupied with one thing
+                    only—his future <span class='счастье'>happiness</span>. Sometimes it seemed to him that other people
+                    were all as <span class='радость'>pleased</span> as he
+                    was himself and merely tried to hide that <span class='радость'>pleasure</span>, by pretending to be
+                    busy with other interests. In
+                    every word and gesture he saw allusions to his <span class='счастье'>happiness</span>. He often
+                    surprised those he met by his
+                    significantly <span class='счастье'>happy</span> looks and smiles which seemed to express a secret
+                    understanding between him and
+                    them. And when he realized that people might not be aware of his <span
+                        class='счастье'>happiness</span>, he pitied them with his
+                    whole heart and felt a desire somehow to explain to them that all that occupied them was a mere
+                    frivolous trifle unworthy of attention.
+                </p>
+            </div>
+            <div class='col-md-3'>
+                <h4>Pevear and Volokhonsky (2007)</h4>
+                <p>
+                    A <span class='радость'>joyful</span>, unexpected madness, of which Pierre considered himself
+                    incapable, came over him. The whole
+                    meaning of life, not only for him, but for all the world, seemed to him to consist only in his love
+                    and the possibility of her love for him. Sometimes all people seemed to him to be occupied with only
+                    one thing—his future <span class='счастье'>happiness</span>. It sometimes seemed to him that they
+                    were all <span class='радость'>rejoicing</span> as he was,
+                    and only tried to conceal their <span class='радость'>joy</span>, pretending to be occupied with
+                    other interests. In every word
+                    and movement he saw hints at his <span class='счастье'>happiness</span>. He often surprised people
+                    who met him by his significant
+                    <span class='счастье'>happy</span> glances and smiles, expressive of a secret complicity. But when
+                    he realized that people could
+                    not know of his <span class='счастье'>happiness</span>, he pitied them with all his heart and felt a
+                    desire to explain to them
+                    somehow that everything they were occupied with was completely nonsensical and trifling, not worthy
+                    of attention.
+                </p>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-12'>
+                <h4 style='text-align: center'>Andrei thinking of Natasha in the medical tent during the Battle of
+                    Borodino (Vol. 3, Part 2,
+                    Chapter XXXVII)</h4>
+                <p>This excerpt highlights the various ways to translate <i>vostorg</i>. Respectively, the Garnett,
+                    Maude, and P&V translations translate <i>vostorzhennaya</i> (an adjectival form of <i>vostorg</i>)
+                    as "passionate," "ecstatic," and "rapturous." Where <i>vostorg</i> shows up earlier in the
+                    paragraph, the two later translators translate it as "rapture," while Garnett translated it as
+                    "ecstatic enjoyment." Although "ecstatic enjoyment" seems closer to <i>vostorg</i> than "ecstasy"
+                    alone (see etymology section), this unusual word combination probably obfuscates more than
+                    necessary.</p>
+                <br>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-3'>
+                <h4>Original Russian</h4>
+                <p>
+                    И вдруг новое, неожиданное воспоминание из мира детского, чистого и любовного, представилось князю
+                    Андрею. Он вспомнил Наташу такою, какою он видел ее в первый раз на бале 1810 года, с тонкой шеей и
+                    тонкими руками, с готовым на <span class='восторг'>ВОСТОРГ</span>, испуганным, <span
+                        class='счастье'>СЧАСТЛИВЫМ</span> лицом, и любовь и нежность к ней, еще
+                    живее и сильнее, чем когда-либо, проснулись в его душе. Он вспомнил теперь эту связь, которая
+                    существовала между им и этим человеком, сквозь слезы, наполнявшие распухшие глаза, мутно смотревшим
+                    на него. Князь Андрей вспомнил все, и <span class='восторг'>ВОСТОРЖЕННАЯ</span> жалость и любовь к
+                    этому человеку наполнили его
+                    <span class='счастье'>СЧАСТЛИВОЕ</span> сердце.
+                </p>
+            </div>
+            <div class='col-md-3'>
+                <h4>Garnett (1904)</h4>
+                <p>
+                    And all at once a new, unexpected memory from that childlike world of purity and love rose up before
+                    Prince Andrey. He remembered Natasha, as ge had seen her for the first time at the ball in 1810,
+                    with her slender neck and slender arms, and her frightened, <span class='счастье'>happy</span> face,
+                    ready for <span class='восторг'>ecstatic</span>
+                    enjoyment, and a love and tenderness awoke in his heart for her stronger and more loving than ever.
+                    He recalled now the bond that existed between him and this man, who was looking vaguely at him
+                    through the tears that filled his swollen eyes. Prince Andrey remembered everything, and a
+                    <span class='восторг'>passionate</span> pity and love for that suffering man filled his <span
+                        class='счастье'>happy</span> heart.
+                </p>
+            </div>
+            <div class='col-md-3'>
+                <h4>Maude (1922)</h4>
+                <p>
+                    And suddenly a new unexpected memory from that realm of pure and loving childhood presented itself
+                    to him. He remembered Natásha as he had seen her for the first time at the ball in 1810, with her
+                    slender neck and arms and with a frightened <span class='счастье'>happy</span> face ready for <span
+                        class='восторг'>rapture</span>, and love and tenderness
+                    for her, stronger and more vivid than ever, awoke in his soul. He now remembered the connection that
+                    existed between himself and this man who was dimly gazing at him through tears that filled his
+                    swollen eyes. He remembered everything, and <span class='восторг'>ecstatic</span> pity and love for
+                    that man overflowed his <span class='счастье'>happy</span>
+                    heart.
+                </p>
+            </div>
+            <div class='col-md-3'>
+                <h4>Pevear and Volokhonsky (2007)</h4>
+                <p>
+                    And suddenly a new and unexpected memory from the world of childhood, purity, and love came to
+                    Prince Andrei. He remembered Natasha as he had seen her for the first time at the ball in 1810, with
+                    her slender neck and arms, with her frightened, <span class='счастье'>happy</span> face ready for
+                    <span class='восторг'>rapture</span>, and in his soul love
+                    and tenderness for her awakened, stronger and more alive than ever. He now remembered the connection
+                    between him and this man, who was looking at him dully through the tears that filled his swollen
+                    eyes. Prince Andrei remembered everything, and a <span class='восторг'>rapturous</span> pity and
+                    love for this man filled his
+                    <span class='счастье'>happy</span> heart.
+                </p>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-12'>
+                <hr>
+                <h2 id='visualization'>VI. Visualizations of <i>schast'ye</i>, <i>radost'</i>, and <i>vostorg</i></h2>
+                <p>These visualizations are based on the dataset I compiled of instances of happiness, joy, and rapture co-occurring with the characters Andrei, Pierre, and Natasha. All of the visualizations have interactive elements and are intended for exploratory purposes.</p>
+                <h3><span class='figlabel'>Figure 1: </span>
                     Happiness over time for
                     <span style='color: #3d405b'>Andrei</span>,
                     <span style='color: #81b29a'>Pierre</span>, &
                     <span style='color: #e07a5f'>Natasha</span>
-                </h2>
+                </h3>
                 <h4>The line chart below covers all 17 parts of <i>War and Peace</i> across the 4 volumes and Epilogue.
                     The height of the line corresponds to the <i>count</i> of instances in the part where a character's
                     name occurs in conjunction with any one of the happiness keywords - <i>schast'ye</i> (happiness),
@@ -405,7 +693,9 @@
         </div>
         <div class='row'>
             <div class='col-md-12'>
-                <button id='showexamples'>Show textual examples mapped onto the graph</button>
+                <br>
+                <p><button id='showexamples'>Show textual examples mapped onto the graph</button></p>
+                <br>
             </div>
         </div>
         <div class='row examples'>
@@ -415,6 +705,7 @@
                         style='color: gray'>(select dot
                         above)</span> <span id='timespan'></span>
                 </h3>
+                <br>
             </div>
         </div>
         <div class='row examples' style='max-height: 600px; overflow: scroll;'>
@@ -463,8 +754,11 @@
         <div class='row'>
             <div class='col-md-5'>
                 <h3><span class='figlabel'>Figure 3a: </span>Happiness across characters</h3>
-                <h4>For Andrei, Pierre, and Natasha (aggregated across novel).</h4><button id='reset' disabled='true'
-                    style='color: gray'>Reset graph</button>
+                <h4>For Andrei, Pierre, and Natasha (aggregated across novel).</h4>
+                    <div style='text-align: right;'>
+                        <button id='reset' disabled='true' style='color: gray'>Reset graph</button>
+                    </div>
+                    
                 <div id='graph'></div>
                 <br>
                 <div style='text-align: left;'>
@@ -475,6 +769,94 @@
                 <h3><span class='figlabel'>Figure 3b: </span>Happiness across the parts</h3>
                 <h4>Spanning the 17 parts of the 4 volumes and Epilogue.</h4>
                 <div id='allbar'></div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class=col-md-12>
+                <hr>
+                <h3><span class='figlabel'>Figure 4:</span> Words associated with happiness</h3>
+                <p>Words in the bubble are lemmas (dictionary form) of the word, since the same word might appear
+                    in multiple sentences in different forms.
+                </p>
+            </div>
+        </div>
+        <div class='row' style='min-height: 650px'>
+            <div class='col-md-6' style='text-align: center;'>
+                <!-- <br><br> -->
+                <p>Select a character to see word associations with happiness:</p>
+                <button id='allbutton' class='bubblebutton' style='color: lightgrey'>All characters</button>
+                <button id='Andreibutton' class='bubblebutton' style='color: #3d405b'>Andrei</button>
+                <button id='Pierrebutton' class='bubblebutton' style='color: #81b29a'>Pierre</button>
+                <button id='Natashabutton' class='bubblebutton' style='color: #e07a5f'>Natasha</button>
+                <br><br>
+                <div id='bubble'></div>
+            </div>
+            <div class='col-md-1'></div>
+            <div class='col-md-5'>
+                <h3>Sentences for <span id='bubchar' style='color: gray'>(select bubble)</span></h3>
+                <h4>Examples including happiness & <span id='bubbleword' style='color: gray'>(select bubble)</span></h4>
+                <div id='bubbleexamples' style='max-height: 500px; overflow: scroll'></div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-12' id='discuss'>
+                <hr>
+                <h2>VII. Discussion and analysis of the data</h2>
+                <p>
+                    Starting with Figure 1, we can examine the spikes in the graph to see the parts of novel where
+                    the characters are associated more frequently with happiness. Prince Andrei experiences an intense 
+                    spike in Volume 2, Part 3, when SOMETHING HAPPENS.
+                </p>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-12'>
+                <hr>
+                <h2 id='limit'>VIII. Limitations and further questions</h2>
+                <br>
+                <h3 style='color: gray'>Limitations of the data and digital humanities in general</h3>
+                <p>
+                    Several issues arise from a data-based look at happiness in <i>War and Peace</i>. For one, the dataset which I have assembled does not perfectly represent all co-occurrences of Andrei, Pierre, and Natasha with <i>schast’ye</i>, <i>radost’</i>, and <i>vostorg</i>.
+                    Because of the way I scraped the data, it's possible that there are paragraphs that mention a certain character and a certain keyword, but that character might not be experiencing that particular word. 
+                    This is something that is difficult to search and ascertain in a text because of the difficulties of computer "understanding" of language, a problem that requires more complex analytic methods than I had access to.
+                    Computer understanding of natural languages is a field of study that is thought to be "<a href='https://en.wikipedia.org/wiki/AI-complete' target='_blank'>AI-complete</a>", the set of the most difficult problems in artificial intelligence.
+                    For that reason, my study is exploratory in both technique and analysis, and I hope that applying different idioms of digital humanities will lead to an array of results from which to accept and discard.
+                </p>
+                <p>Additionally, since visualization is such an individual experience that relies heavily on the subjectivity of visual perception, the graphs above may not be the best way
+                    of showing the data that I have collected. In some cases, I had to make arbitrary choices about how to present data that
+                    spanned the whole novel: rather than breaking down by page or individual chapter, I opted to go by part. In this instance, the graph 
+                    will be not be entirely "accurate" in terms of happiness over time, since there are some parts which have more chapters than others. 
+                    I have also chosen to "round out" the lines in Figure 1 and Figure 2 to emphasize the continuity of the novel's plot, although it should be made
+                    clear that the data is discrete for each chapter.
+                </p>
+                <h3 style='color: gray'>Further questions and directions</h3>
+                <ul>
+                    <li>
+                        <b>Etymology:</b> The differences in translation of <i>schast'ye</i>/счастье,
+                        <i>radost'</i>/радость, & <i>vostorg</i>/восторг suggest that there are unanswered questions about 
+                        the emotional subtleties of the definitions of these Russian words. I also need more sources about
+                        the etymology of <i>radost'</i> to have a clearer picture of its origins.
+                    </li>
+                    <li>
+                        <b>Word choice and translation:</b> I was not able to cover all the translations of <i>War and Peace</i> and only looked at a few excerpts.
+                        Choosing more excerpts to analyze would help us learn more about the differences between <i>schast’ye</i>, <i>radost’</i>, and <i>vostorg</i>,
+                        particularly in this novel. It would also be prudent to look at other words which indicate happy emotion in Russian,
+                        like <i>vesel'ye</i>/веселье.
+                    </li>
+                    <li>
+                        <b>Happiness and Tolstoy</b>: It would be instructive from a different angle to look instances of <i>schast’ye</i>, <i>radost’</i>, and <i>vostorg</i>
+                        across Tolstoy's work, across time. Is <i>War and Peace</i> a representative example of Tolstoy's relationship with these words in his writing?
+                    </li>
+                    <li>
+                        <b>Characterization:</b> Examining more characters (like Marya, Nikolai, Sonya) would give us a fuller picture of Tolstoy's
+                        relationship with <i>schast’ye</i>, <i>radost’</i>, and <i>vostorg</i> in the novel.
+                    </li>
+                    <li>
+                        <b>Technique:</b> A great deal of progress is still needed to perfect this dataset. It would probably require a paragraph by paragraph examination of the book
+                        to find all instances of happiness and appropriately link them with different characters. The visualizations above can be
+                        refined, and novel visualizations can be built to provide more informative views of the data.
+                    </li>
+                </ul>
             </div>
         </div>
         <div class='row'>
@@ -489,6 +871,7 @@
 <script src='linechart.js'></script>
 <script src='stackedline.js'></script>
 <script src='allbar.js'></script>
+<script src='bubble.js'></script>
 <script>
     drawLineChart("alltypes12-6.csv", 'line1')
 </script>
